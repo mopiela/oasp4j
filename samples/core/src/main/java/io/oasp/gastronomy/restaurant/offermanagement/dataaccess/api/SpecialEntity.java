@@ -69,7 +69,7 @@ public class SpecialEntity extends ApplicationPersistenceEntity {
    * @return activePeriod
    */
   @Embedded
-  public WeeklyPeriod getActivePeriod() {
+  public WeeklyPeriodEmbeddable getActivePeriod() {
 
     return this.activePeriod;
   }
@@ -78,6 +78,10 @@ public class SpecialEntity extends ApplicationPersistenceEntity {
    * @param activePeriod new value of {@link #getactivePeriod}.
    */
   public void setActivePeriod(WeeklyPeriod activePeriod) {
+
+    if (this.activePeriod == null) {
+      this.activePeriod = new WeeklyPeriodEmbeddable();
+    }
 
     this.activePeriod.setStartingDay(activePeriod.getStartingDay());
     this.activePeriod.setStartingHour(activePeriod.getStartingHour());
